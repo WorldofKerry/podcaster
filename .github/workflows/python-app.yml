@@ -34,14 +34,11 @@ jobs:
     - name: Install dependencies
       run: |
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        ./install_deps.sh
     
     - name: Install package
       run: |
         python -m pip install -e .
-
-    - name: Install linux dependencies
-      run: |
-        ./install_deps.sh
 
     - name: Run application
       env:
