@@ -49,7 +49,7 @@ jobs:
     
     - name: Install linux dependencies
       run: |
-        sudo apt-get install ffmpeg
+        ./install_deps.sh
     
     - name: Run application
       env:

@@ -33,7 +33,7 @@ jobs:
         python -m pip install -e .
     - name: Install linux dependencies
       run: |
-        sudo apt-get update && sudo apt-get install espeak ffmpeg libespeak1
+        ./install_deps.sh
     - name: Run application
       env:
         OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
