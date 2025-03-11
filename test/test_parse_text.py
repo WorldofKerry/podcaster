@@ -1,4 +1,4 @@
-from podcaster_kerry.audio import _dialogue_as_list
+from podcaster_kerry.audio.audio import _dialogue_as_list
 from . import SAMPLE
 
 def test_parse_text():

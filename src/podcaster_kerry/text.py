@@ -1,11 +1,7 @@
 import os
-import logging
-from tika import parser
+import subprocess
 
-# Silence tika logs https://github.com/chrismattmann/tika-python/issues/341
-tika_logger = logging.getLogger("tika.tika")
-tika_logger.setLevel(logging.WARNING)
-
-def extract_text(path: os.PathLike) -> str:
-    parsed = parser.from_file(str(path))
-    return parsed["content"]
+def extract_text(in_path: os.PathLike):
+    output = subprocess.check_output(["pdftotext", str(in_path), "-"], stderr=subprocess.STDOUT)
+    text = output.decode("utf-8")
+    return text

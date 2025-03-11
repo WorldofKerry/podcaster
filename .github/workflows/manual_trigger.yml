@@ -5,7 +5,6 @@ name: Run on PDF
 
 on:
   push:
-  pull_request:
   workflow_dispatch:
     inputs:
       url:
@@ -36,22 +35,19 @@ jobs:
       # if: steps.pip_cache.outputs.cache-hit != 'true'
       run: |
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        ./install_deps.sh
     
     - name: Download PDF
       env:
         URL: ${{ inputs.url }}
       run: |
-        : "${URL:=https://arxiv.org/pdf/2205.14135}"
+        : "${URL:=https://arxiv.org/pdf/2209.01506}"
         wget $URL -O download.pdf
 
     - name: Install package
       run: |
         python -m pip install -e .
-    
-    - name: Install linux dependencies
-      run: |
-        sudo apt-get install ffmpeg
-    
+        
     - name: Run application
       env:
         OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
