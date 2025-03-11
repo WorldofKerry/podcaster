@@ -1,3 +1,4 @@
+import logging
 from openai import OpenAI
 
 PROMPT_TEXT = """
@@ -6,6 +7,7 @@ Be specific on equations used, new findings, and methodologies, etc.
 Assume the target audience is highly technical.
 
 Avoid latex in the result, as they are difficult to understand in audio format.
+Aim to generate 20 minutes worth of content.
 
 The result must be formatted as:
 H1: <things to say>
@@ -14,7 +16,7 @@ H1: <things to say>
 ...
 where a newline is the delimiter.
 """
-
+logger = logging.getLogger(__name__)
 
 def to_podcast(api_key: str, content: str) -> str:
     client = OpenAI(
@@ -30,6 +32,6 @@ def to_podcast(api_key: str, content: str) -> str:
         )
         if completion.choices[0].message.content:
             break
-        print("Empty response, retrying")
+        logger.warning("Empty response, retrying")
 
     return completion.choices[0].message.content, completion
