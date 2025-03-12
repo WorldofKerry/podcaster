@@ -1,4 +1,5 @@
 from enum import Enum
+import math
 from pathlib import Path
 import wave
 import re
@@ -38,7 +39,7 @@ def dialogue_to_mp3(content: str, working_dir: Path, output: Path, engine: Engin
 
     match engine:
         case Engine.COQUI:
-            dialogue_to_mp3_coqui(results, segments_dir)
+            dialogue_to_mp3_coqui(results, (segments_dir / f"{i:>0{math.ceil(math.log10(len(results)))}}.wav" for i in range(len(results))))
         case Engine.PIPER:
             dialogue_to_mp3_piper(results, segments_dir)
         case _:
