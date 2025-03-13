@@ -28,7 +28,7 @@ def to_podcast(api_key: str, content: str) -> str:
 
     while True:
         completion = client.chat.completions.create(
-            model="deepseek/deepseek-chat:free",
+            model="meta-llama/llama-3.3-70b-instruct:free",
             messages=[{"role": "user", "content": content + "\n" + PROMPT_TEXT}],
             temperature=0.0,
         )
