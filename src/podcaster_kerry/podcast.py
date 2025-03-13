@@ -9,7 +9,7 @@ The output should be easy to convert to audio.
 Do not output any latex.
 Spell out acronyms.
 Use words to describe equations (e.g. output "sum over" instead of a sigma symbol).
-Aim to generate 20 minutes worth of content.
+Aim to generate at least 20 entries in result.
 
 The result must be formatted as:
 H1: <things to say>
