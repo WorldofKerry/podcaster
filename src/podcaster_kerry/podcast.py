@@ -3,10 +3,12 @@ from openai import OpenAI
 
 PROMPT_TEXT = """
 Convert this into a two-party podcast conversation.
-Be specific on equations used, new findings, and methodologies, etc.
 Assume the target audience is highly technical.
 
-Avoid latex in the result, as they are difficult to understand in audio format.
+The output should be easy to convert to audio.
+Do not output any latex.
+Spell out acronyms.
+Use words to describe equations (e.g. output "sum over" instead of a sigma symbol).
 Aim to generate 20 minutes worth of content.
 
 The result must be formatted as:
