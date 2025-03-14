@@ -29,7 +29,10 @@ def to_podcast(api_key: str, content: str) -> str:
     while True:
         completion = client.chat.completions.create(
             model="meta-llama/llama-3.3-70b-instruct:free",
-            messages=[{"role": "user", "content": content + "\n" + PROMPT_TEXT}],
+            messages=[
+                {"role": "system", "content": PROMPT_TEXT}
+                {"role": "user", "content": content}
+            ],
             temperature=0.0,
         )
         try:
