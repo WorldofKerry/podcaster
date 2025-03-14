@@ -32,8 +32,11 @@ def to_podcast(api_key: str, content: str) -> str:
             messages=[{"role": "user", "content": content + "\n" + PROMPT_TEXT}],
             temperature=0.0,
         )
-        if completion.choices[0].message.content:
-            break
+        try:
+            if completion.choices[0].message.content:
+                break
+        except TypeError:
+            pass
         logger.warning("Empty response, retrying")
 
     return completion.choices[0].message.content, completion
